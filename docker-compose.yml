@@ -1,0 +1,36 @@
+version: 3
+
+services:
+  app:
+    image: node:18
+    container_name: mi_:app
+    working_dir: /usr/src/app
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=root
+      - DB_PASSWORD_rootpassword
+      - DB_NAME=dbAsir
+    depends_on:
+      - db
+    command: ["npm","start"]
+  
+  db:
+    image: mysql:8
+    container_name: mi_db
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=DB_PASSWORD_rootpassword
+      - MYSQL_DATABASE=dbAsir
+    ports: 
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+volumes:
+  db_data
+
+
+
