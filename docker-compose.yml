@@ -1,4 +1,4 @@
-version: 3
+version: '3'
 
 services:
   app:
@@ -30,7 +30,7 @@ services:
     volumes:
       - db_data:/var/lib/mysql
 volumes:
-  db_data
+  db_data:
 
 
 
